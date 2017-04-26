@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
+import { Injectable, Input, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -7,22 +7,15 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
-@Directive({
-  // tslint:disable-next-line:directive-selector
-  selector: '[elementRespond]'
-})
-export class RespondDirective {
+@Injectable()
+export class ElementResizeService {
 
-  private el: HTMLInputElement;
+  private el: HTMLElement;
   height$: Observable<number>;
   width$: Observable<number>;
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('elementRespond') expression: string;
+  constructor(private ref: ElementRef) {
 
-  constructor(
-    private ref: ElementRef
-  ) {
     this.el = ref.nativeElement;
 
     const elementSize$ = new BehaviorSubject(this.getElementSize());
@@ -36,15 +29,23 @@ export class RespondDirective {
       .subscribe(elementSize$);
   }
 
+  setTargetElement(ref: ElementRef) {
+    this.ref = ref;
+  }
+
   getElementSize() {
 
-    const height = this.el.clientHeight;
-    const width = this.el.clientWidth;
+    let height = 0;
+    let width = 0;
+
+    if (this.el) {
+      height = this.el.clientHeight;
+      width = this.el.clientWidth;
+    }
 
     return {
       height: height,
       width: width
     };
   }
-
 }
