@@ -1,4 +1,17 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+<div class="container">
+  <h1>
+    {{title}}
+  </h1>
+  <div class="spacer-10"></div>
+  <router-outlet></router-outlet>
+  <div class="spacer-10"></div>
+  <div>
+    ViewPort Height: {{outerHeight}}, ViewPort Width: {{outerWidth}}
+  </div>
+  <div>
+    Window Inner Height: {{innerHeight}}, Window Inner Width: {{innerWidth}}
+  </div>
+  <div>
+    Body Height: {{bodyHeight}}, Body Width: {{bodyWidth}}
+  </div>
+</div>

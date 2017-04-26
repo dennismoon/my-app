@@ -5,10 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RespondDirective } from './common/respond.directive';
+import { WindowResizeService } from './services/window-resize.service';
+import { ResponsiveComponent } from './responsive/responsive.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ResponsiveComponent,
+    RespondDirective
   ],
   imports: [
     BrowserModule,
@@ -16,7 +21,9 @@ import { AppComponent } from './app.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    WindowResizeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
