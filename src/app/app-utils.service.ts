@@ -24,9 +24,37 @@ export class AppUtilsService {
     return undefined;
   }
 
+  formatInteger(input: number) {
+    if (input) {
+      input = parseFloat(input.toString());
+      const numStr = input.toFixed(0);
+      const numText = Number(numStr).toLocaleString();
+      return numText;
+    }
+    return '';
+  }
+
+  formatDecimal(input: number, decimalPlaces: number = 0) {
+    if (input) {
+      input = parseFloat(input.toString());
+      const numStr = input.toFixed(decimalPlaces);
+      const numText = Number(numStr).toLocaleString();
+      return '$' + numText;
+    }
+    return '';
+  }
+
   formatDollars(input: number, includeCents: boolean = false) {
-    const numText = Number(input).toLocaleString();
-    return '$' + numText;
+    if (input) {
+      input = parseFloat(input.toString());
+      let numStr = input.toFixed(0);
+      if (includeCents === true) {
+        numStr = input.toFixed(2);
+      }
+      const numText = Number(numStr).toLocaleString();
+      return '$' + numText;
+    }
+    return '';
   }
 
   formatPercent(input: number, decimalPlaces: number = 2) {
