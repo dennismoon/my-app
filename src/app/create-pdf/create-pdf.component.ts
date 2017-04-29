@@ -24,12 +24,35 @@ export class CreatePdfComponent implements OnInit {
   }
 
   createPDF(selector) {
-    let page = this.$(selector);
+    const page = this.$(selector);
     if (page && page.length > 0) {
       const drawing = this.kendo.drawing;
-      drawing.drawDOM(page).then(function (group) {
+      drawing.drawDOM(page, {
+        paperSize: 'letter',
+        forcePageBreak: '.page-break',
+        scale: 0.75
+      }).then(function (group) {
         drawing.pdf.saveAs(group, 'RolloverAnalysis.pdf');
       });
     }
   }
+
+  // createPDF(selector) {
+  //   const content = this.$(selector);
+  //   if (content && content.length > 0) {
+  //     const drawing = this.kendo.drawing;
+  //     drawing.drawDOM(content, {
+  //       paperSize: 'A4'
+  //     })
+  //     .then(function (root) {
+  //       return drawing.exportPDF(root);
+  //     })
+  //     .done(function (data) {
+  //       this.kendo.saveAs({
+  //         dataURI: data,
+  //         fileName: 'my-illustration.pdf'
+  //       });
+  //     });
+  //   }
+  // }
 }
