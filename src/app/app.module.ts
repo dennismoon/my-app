@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { JQUERY_PROVIDER } from './common';
+import { KENDO_PROVIDER } from './common';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RespondDirective } from './common/respond.directive';
@@ -10,6 +13,7 @@ import { WindowResizeService } from './services/window-resize.service';
 import { ResponsiveComponent } from './responsive/responsive.component';
 import { ConfirmDirective } from './common/confirm.directive';
 import { ButtonPressDirective } from './common/button-press.directive';
+import { CreatePdfComponent } from './create-pdf/create-pdf.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,8 @@ import { ButtonPressDirective } from './common/button-press.directive';
     ResponsiveComponent,
     RespondDirective,
     ConfirmDirective,
-    ButtonPressDirective
+    ButtonPressDirective,
+    CreatePdfComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,9 @@ import { ButtonPressDirective } from './common/button-press.directive';
     AppRoutingModule
   ],
   providers: [
-    WindowResizeService
+    WindowResizeService,
+    JQUERY_PROVIDER,
+    KENDO_PROVIDER
   ],
   bootstrap: [AppComponent]
 })

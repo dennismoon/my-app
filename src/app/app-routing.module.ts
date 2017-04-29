@@ -3,13 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { ResponsiveComponent } from './responsive/responsive.component';
+import { CreatePdfComponent } from './create-pdf/create-pdf.component';
 
 const routes: Routes = [
   {
     path: 'responsive', component: ResponsiveComponent
   },
   {
-    path: '', pathMatch: 'full', redirectTo: 'responsive'
+    path: 'create-pdf', component: CreatePdfComponent
+  },
+  {
+    path: '', pathMatch: 'full', redirectTo: 'create-pdf'
   }
 ];
 

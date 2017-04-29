@@ -26,7 +26,10 @@
       "scripts": [
         "../node_modules/jquery/dist/jquery.slim.min.js",
         "../node_modules/tether/dist/js/tether.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "./vendor/telerik/jszip.min.js",
+        "./vendor/telerik/kendo.custom.min.js",        
+        "./vendor/telerik/pako_deflate.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
