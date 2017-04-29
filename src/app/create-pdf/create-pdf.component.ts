@@ -36,23 +36,4 @@ export class CreatePdfComponent implements OnInit {
       });
     }
   }
-
-  // createPDF(selector) {
-  //   const content = this.$(selector);
-  //   if (content && content.length > 0) {
-  //     const drawing = this.kendo.drawing;
-  //     drawing.drawDOM(content, {
-  //       paperSize: 'A4'
-  //     })
-  //     .then(function (root) {
-  //       return drawing.exportPDF(root);
-  //     })
-  //     .done(function (data) {
-  //       this.kendo.saveAs({
-  //         dataURI: data,
-  //         fileName: 'my-illustration.pdf'
-  //       });
-  //     });
-  //   }
-  // }
 }
