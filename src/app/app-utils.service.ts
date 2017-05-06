@@ -5,46 +5,54 @@ export class AppUtilsService {
 
   constructor() { }
 
-  normalizeInteger(input: string): string {
+  normalizeInteger(input: string, returnZero: boolean = false): string {
     if (input && input.length > 0) {
       // normalize number string and remove all unnecessary characters
       input = input.replace(/[^\d]/g, '');
       return input;
     }
+    if (returnZero === true) {
+      return '0';
+    }
     return undefined;
   }
 
-  normalizeDecimal(input: string, decimalPlaces: number = 0): string {
+  normalizeDecimal(input: string, decimalPlaces: number = 0, returnZero: boolean = false): string {
     if (input && input.length > 0) {
       // normalize number string and remove all unnecessary characters
       input = input.replace(/[^-.0-9]/g, '');
       const num = parseFloat(input);
       return num.toFixed(decimalPlaces);
     }
+    if (returnZero === true) {
+      return Number(0).toFixed(decimalPlaces);
+    }
     return undefined;
   }
 
-  formatInteger(input: number) {
+  fixDecimalPlaces(input: number, decimalPlaces: number = 0, returnZero: boolean = false): number {
+    if (input) {
+      const numStr = input.toFixed(decimalPlaces);
+      const num = parseFloat(numStr);
+      return num;
+    }
+    return undefined;
+  }
+
+  formatInteger(input: number, returnZero: boolean = false): string {
     if (input) {
       input = parseFloat(input.toString());
-      const numStr = input.toFixed(0);
+      let numStr = input.toFixed(0);
       const numText = Number(numStr).toLocaleString();
       return numText;
     }
-    return '';
-  }
-
-  formatDecimal(input: number, decimalPlaces: number = 0) {
-    if (input) {
-      input = parseFloat(input.toString());
-      const numStr = input.toFixed(decimalPlaces);
-      const numText = Number(numStr).toLocaleString();
-      return '$' + numText;
+    if (returnZero === true) {
+      return '0';
     }
     return '';
   }
 
-  formatDollars(input: number, includeCents: boolean = false) {
+  formatDollars(input: number, includeCents: boolean = false, returnZero: boolean = false): string {
     if (input) {
       input = parseFloat(input.toString());
       let numStr = input.toFixed(0);
@@ -54,12 +62,27 @@ export class AppUtilsService {
       const numText = Number(numStr).toLocaleString();
       return '$' + numText;
     }
+    if (returnZero === true) {
+      return '$' + Number(0).toFixed(2);
+    }
     return '';
   }
 
-  formatPercent(input: number, decimalPlaces: number = 2) {
+  formatPercentFromFraction(input: number, decimalPlaces: number = 2): string {
     const numText = this.convertFractionToPercent(input, decimalPlaces);
     return numText + '%';
+  }
+
+  formatPercent(input: number, decimalPlaces: number = 2, returnZero: boolean = false): string {
+    if (input) {
+      input = parseFloat(input.toString());
+      const numText = input.toFixed(decimalPlaces);
+      return numText + '%';
+    }
+    if (returnZero === true) {
+      return Number(0).toFixed(decimalPlaces) + '%';
+    }
+    return '';
   }
 
   formatPhoneNumber(input: string, format: string = undefined): string {
