@@ -1,3 +1,4 @@
+import { ElementRef } from '@angular/core';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { ElementResizeService } from './element-resize.service';
@@ -5,11 +6,14 @@ import { ElementResizeService } from './element-resize.service';
 describe('ElementResizeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ElementResizeService]
+      providers: [
+        ElementRef,
+        ElementResizeService
+      ]
     });
   });
 
-  it('should ...', inject([ElementResizeService], (service: ElementResizeService) => {
+  it('should create', inject([ElementResizeService], (service: ElementResizeService) => {
     expect(service).toBeTruthy();
   }));
 });

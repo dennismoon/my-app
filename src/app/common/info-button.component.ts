@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Inject } from '@angular/core';
-import { JQUERY_TOKEN } from './jquery.service';
+// import { JQUERY_TOKEN } from './jquery.service';
+
+declare var jQuery: any;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,11 +16,11 @@ export class InfoButtonComponent implements OnInit {
   @Input() content: string;
   @ViewChild('infobutton') containerEl: ElementRef;
 
-  constructor(@Inject(JQUERY_TOKEN) private $: any) { }
+  constructor() { }
 
   ngOnInit() {
     // tslint:disable-next-line:prefer-const
-    let infoButton = this.$(this.containerEl.nativeElement);
+    let infoButton = jQuery(this.containerEl.nativeElement);
     if (infoButton && infoButton.length > 0) {
       console.log(this.elementId);
       infoButton.popover({
